@@ -1,88 +1,45 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
-import React from 'react';
+import { StyleSheet, Text, View, FlatList, SafeAreaView } from "react-native";
+import React from "react";
+import Contact from "./Components/Contact";
 
 const App = () => {
+  const contacts = [
+    {
+      name: "Mendy",
+      phone: "07777777777",
+      image: require("./assets/1.jpg"),
+    },
+
+    {
+      name: "Ziyech",
+      phone: "0578662482",
+      image: require("./assets/2.jpg"),
+    },
+
+    {
+      name: "James",
+      phone: "078934081282s",
+      image: require("./assets/3.jpeg"),
+    },
+
+    {
+      name: "Hudson-Odoi",
+      phone: "0111111111111",
+      image: require("./assets/4.jpeg"),
+    },
+  ];
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.login}>Log in</Text>
-      <TextInput style={styles.input} placeholder='Username' />
-      <TextInput style={styles.input} placeholder='Password' />
-      <Text style={styles.forgot}>Forgot Password?</Text>
-      <TouchableOpacity style={styles.btn}>
-        <Text style={styles.btntxt}>Log In</Text>
-      </TouchableOpacity>
-      <View style={styles.alc}>
-        <Text style={styles.sign}>Don't have account?</Text>
-        <Text style={styles.signup}>Sign up</Text>
-      </View>
-    </View>
+    <SafeAreaView style={{ flex: 2, marginTop: 50 }}>
+      <FlatList
+        data={contacts}
+        keyExtractor={(item, index) => `${item.name}-${index}`}
+        renderItem={({ item }) => <Contact item={item} />}
+      />
+    </SafeAreaView>
   );
 };
 
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 24,
-    borderWidth: 2,
-    borderColor: "blue",
-    margin: 50,
-    borderRadius: 30
-  },
-  login: {
-    fontSize: 50,
-    color: "blue",
-    marginTop: 100,
-    fontWeight: "bold",
-  },
-
-input: {
-  borderBottomWidth: 1,
-  marginTop: 50,
-  fontSize: 16,
-  borderBottomColor: "blue"
-},
-
-forgot: {
-  textAlign: "right",
-  marginTop: 15,
-  fontSize: 16
-},
-
-btn: {
-  backgroundColor: "blue",
-  width: 200,
-  height: 50,
-   borderRadius: 10,
-  justifyContent: "center",
-  alignItems: "center",
-  alignSelf: "center",
-  marginTop: 70,
-},
-
-btntxt: {
-  fontSize: 24,
-  color: "white"
-},
-
-alc: {
-  flexDirection: "row",
-  marginTop: 50,
-  justifyContent: "center",
-  alignItems: "center",
-},
-
-sign: {
-  fontSize: 16
-},
-
-signup: {
-  fontSize: 16,
-  marginLeft: 5,
-  color: "blue"
-}
-
-});
-
-
 export default App;
+
+const styles = StyleSheet.create({});
